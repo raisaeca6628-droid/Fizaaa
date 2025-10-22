@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌹 ULTAH INTERAKTIF FIZA 💖 Tekan Tombol!</title>
+    <style>
+        /* Menggunakan font yang lebih elegan dan modern */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            /* Latar belakang gradien pink soft */
+            background: linear-gradient(135deg, #ffebee, #f8bbd0, #fce4ec);
+            color: #880e4f; 
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+            max-width: 700px;
+            margin: 60px auto;
+            animation: fadeInScale 2s ease-out;
+            border: 1px solid #f48fb1;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #e91e63;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px #fce4ec;
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #c2185b;
+            font-size: 1.5em;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+        /* Style untuk area teks yang interaktif */
+        .message-box {
+            min-height: 120px; /* Cukup tinggi untuk satu baris panjang */
+            margin: 30px auto;
+            text-align: center;
+            padding: 20px;
+            border: 3px solid #ffccbc; /* Border Pink Lembut */
+            border-radius: 15px;
+            background-color: #fffafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #current-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #311b92;
+            font-weight: 400;
+            opacity: 0; /* Mulai tersembunyi */
+            transition: opacity 0.5s ease-in-out; /* Transisi yang lembut */
+        }
+        .sweet-highlight {
+            font-weight: 600;
+            color: #ff9800;
+            animation: pulse 1s infinite alternate;
+        }
+
+        /* Tombol Lanjut */
+        #next-button {
+            padding: 12px 30px;
+            font-size: 1.2em;
+            font-weight: 700;
+            background-color: #e91e63; /* Pink Mawar */
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+            margin-top: 20px;
+        }
+        #next-button:hover {
+            background-color: #c2185b; /* Pink lebih gelap */
+            transform: scale(1.05);
+        }
+        #next-button:disabled {
+            background-color: #f8bbd0;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        /* Teks Berjalan */
+        .marquee-container {
+            margin: 30px 0;
+            padding: 15px 0;
+            background-color: #fce4ec;
+            border-radius: 10px;
+            border-top: 2px solid #e91e63;
+            border-bottom: 2px solid #e91e63;
+        }
+        .elegant-marquee-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            background-image: linear-gradient(45deg, #e91e63, #ffc107, #e91e63);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+        
+        /* Animasi confetti/glitter */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ffccbc;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 15s infinite;
+        }
+        .confetti:nth-child(2n) { background-color: #f48fb1; width: 7px; height: 7px; animation-duration: 12s; }
+        .confetti:nth-child(3n) { background-color: #ff9800; width: 5px; height: 5px; animation-duration: 18s; }
+        .confetti:nth-child(4n) { background-color: #e91e63; width: 8px; height: 8px; animation-duration: 10s; }
+        
+        /* Keyframes */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            from { transform: scale(1); } to { transform: scale(1.03); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(100vh) translateX(50px) rotate(360deg); opacity: 0.2; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bdayMusic" autoplay loop>
+        <source src="happy_bday.mp3" type="audio/mpeg"> 
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bdayMusic');
+            music.volume = 0.6; 
+            music.play().catch(error => {
+                document.body.addEventListener('click', () => {
+                    music.play().catch(e => console.error("Gagal memutar musik setelah klik:", e));
+                }, { once: true });
+            });
+        });
+    </script>
+
+    <div class="confetti" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="confetti" style="left: 20%; animation-delay: 3s;"></div>
+    <div class="confetti" style="right: 15%; animation-delay: 6s;"></div>
+    <div class="confetti" style="right: 5%; animation-delay: 9s;"></div>
+    <div class="confetti" style="left: 35%; animation-delay: 1s;"></div>
+    <div class="confetti" style="right: 40%; animation-delay: 4s;"></div>
+
+    <div class="container">
+        
+        <div class="marquee-container">
+            <marquee direction="right" behavior="alternate" scrollamount="8">
+                <span class="elegant-marquee-text">💖 SELAMAT ULANG TAHUN FIZA 🎉</span>
+            </marquee>
+        </div>
+        
+        <h1>Happy Birthday, My Queen!</h1>
+        <h2>Khusus untuk Kak Fiza yang Paling Anggun.</h2>
+        
+        <div class="message-box">
+            <p id="current-message">Siap-siap, ada pesan rahasia yang interaktif nih...</p>
+        </div>
+
+        <button id="next-button">TEKAN untuk Lanjut Kata! (0/7)</button>
+
+        <div class="marquee-container">
+            <marquee direction="left" behavior="alternate" scrollamount="8">
+                <span class="elegant-marquee-text">🎉 HAPPY BIRTHDAY FIZA 🌹</span>
+            </marquee>
+        </div>
+
+    </div>
+
+    <script>
+        const messages = [
+            "Di hari spesial ini, aku kirimkan doa-doa terbaik...",
+            "Semoga Kak Fiza selalu dilimpahi **kebahagiaan** yang tak terhingga.",
+            "Usia baru, semangat baru, dan tentunya... **rezeki** yang mengalir deras!",
+            "Kamu sudah menjadi sosok yang **menginspirasi** dan penuh cinta.",
+            "Dan yang paling seru nih...",
+            "Tahun ini harus dapat **pasangan yang baik**, yang bisa nge-treat kamu seperti **Ratu**, dan yang pasti **cepat ke pelaminan!** 🤭",
+            "Selamat menikmati hari indahmu, **Kakak Tercinta!** Traktirannya, lho! 😉"
+        ];
+
+        const messageDisplay = document.getElementById('current-message');
+        const nextButton = document.getElementById('next-button');
+        let currentMessageIndex = 0;
+
+        // Fungsi untuk menampilkan pesan berikutnya
+        function showNextMessage() {
+            if (currentMessageIndex < messages.length) {
+                // Sembunyikan pesan lama dengan fade-out
+                messageDisplay.style.opacity = '0';
+                nextButton.disabled = true; // Nonaktifkan tombol saat transisi
+                nextButton.textContent = `Mohon Tunggu...`;
+
+                setTimeout(() => {
+                    let messageContent = messages[currentMessageIndex]
+                        // Ganti **kata** dengan span untuk highlight
+                        .replace(/\*\*(.*?)\*\*/g, '<span class="sweet-highlight">$1</span>');
+                    
+                    messageDisplay.innerHTML = messageContent;
+                    
+                    // Tampilkan pesan baru dengan fade-in
+                    messageDisplay.style.opacity = '1';
+                    
+                    // Update teks tombol
+                    currentMessageIndex++;
+                    
+                    nextButton.textContent = `TEKAN untuk Lanjut Kata! (${currentMessageIndex}/${messages.length})`;
+                    nextButton.disabled = false; // Aktifkan lagi tombol
+                    
+                    // Cek jika sudah pesan terakhir
+                    if (currentMessageIndex === messages.length) {
+                        nextButton.textContent = 'PESAN SELESAI! Traktirannya Mana? 😉';
+                        nextButton.disabled = true;
+                        // Kamu bisa menambahkan animasi atau kejutan lain di sini
+                    }
+                }, 500); // Jeda 0.5 detik untuk efek fade-out/fade-in
+            }
+        }
+
+        // Event listener pada tombol
+        nextButton.addEventListener('click', showNextMessage);
+
+        // Tampilkan pesan pertama saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tampilkan pesan pertama setelah delay sebentar
+            setTimeout(() => {
+                showNextMessage();
+            }, 1000); 
+        });
+    </script>
+</body>
+</html>
